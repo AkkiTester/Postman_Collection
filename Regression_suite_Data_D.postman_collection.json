@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "1ede4d31-813f-455e-8041-d4c58b794794",
+		"name": "Regression_suite_Data_D",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25472793"
+	},
+	"item": [
+		{
+			"name": "Single_Resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check id : \"+pm.variables.get(\"idc\"), function () {",
+							"    pm.expect(pm.response.json().data.id).to.equal(Number(pm.variables.get(\"idc\")));",
+							"});",
+							"pm.test(\"Check name : \"+pm.variables.get(\"name\"), function () {",
+							"    pm.expect(pm.response.json().data.name).to.equal(pm.variables.get(\"name\"));",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"/*\r",
+							"// Get the CSV data from iteration data (assuming 'value' is the column header)\r",
+							"const csvData = pm.iterationData.get('idc');\r",
+							"\r",
+							"// Set the CSV data as an environment variable\r",
+							"pm.environment.set('idc', csvData);\r",
+							"\r",
+							"// Log the CSV value for verification\r",
+							"console.log('idc', csvData);\r",
+							"\r",
+							"\r",
+							"//-------------------------------------------------------\r",
+							"const csv = pm.iterationData.get('name'); // Assuming 'value' is the column header in your CSV\r",
+							"\r",
+							"// Save the CSV data into an environment variable\r",
+							"pm.environment.set('name', csv);\r",
+							"\r",
+							"// Log the CSV data to verify it's read correctly\r",
+							"console.log('name:', csv);\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/unknown/{{idc}}",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"unknown",
+						"{{idc}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
