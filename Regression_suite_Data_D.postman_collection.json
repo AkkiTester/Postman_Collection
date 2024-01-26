@@ -20,7 +20,7 @@
 							"    pm.response.to.have.body(\"response_body_string\");",
 							"    console.log('Log Massage')",
 							"});",
-							"console.log(pm.globals.get('ID'))",
+							"console.log('Log massage Akash Dilwale')",
 							"",
 							"pm.test(\"Check name : \"+pm.variables.get(\"name\"), function () {",
 							"    pm.expect(pm.response.json().data.name).to.equal(pm.variables.get(\"name\"));",
